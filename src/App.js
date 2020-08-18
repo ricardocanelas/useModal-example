@@ -4,7 +4,14 @@ import ToDoModal from "./modals/TodoModal";
 import ConfirmDialog from "./modals/ConfirmDialog";
 
 const List = () => {
-  const { isShow, open } = useModal();
+  const { isShow, open, dialog } = useModal();
+
+  const handleConfirm = async () => {
+    const confirm = await dialog(ConfirmDialog, {
+      title: "Do you want close without save?",
+    });
+    console.log("confirm", confirm);
+  };
 
   return (
     <div>
@@ -16,9 +23,8 @@ const List = () => {
       <button onClick={() => open("ToDo")} className="mr-3">
         Open To Do Modal
       </button>
-      <button onClick={() => open("ConfirmDialog")}>Open ConfirmDialog</button>
+      <button onClick={handleConfirm}>Open ConfirmDialog</button>
       <ToDoModal />
-      <ConfirmDialog />
     </div>
   );
 };
