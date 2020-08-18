@@ -1,16 +1,18 @@
 import React from "react";
 import { ModalProvider, useModal } from "./hooks/useModal";
+import { DialogProvider, useDialog } from "./hooks/useDialog";
 import ToDoModal from "./modals/TodoModal";
 import ConfirmDialog from "./modals/ConfirmDialog";
 
 const List = () => {
-  const { isShow, open, dialog } = useModal();
+  const { isShow, open } = useModal();
+  const { dialog } = useDialog();
 
   const handleConfirm = async () => {
     const confirm = await dialog(ConfirmDialog, {
       title: "Do you want close without save?",
     });
-    console.log("confirm", confirm);
+    console.log("[app][confirmed]", confirm);
   };
 
   return (
@@ -33,9 +35,11 @@ const List = () => {
 
 function App() {
   return (
-    <ModalProvider>
-      <List />
-    </ModalProvider>
+    <DialogProvider>
+      <ModalProvider>
+        <List />
+      </ModalProvider>
+    </DialogProvider>
   );
 }
 

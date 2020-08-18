@@ -1,15 +1,19 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { useModal } from "../hooks/useModal";
 import ConfirmDialog from "../modals/ConfirmDialog";
+import { useModal } from "../hooks/useModal";
+import { useDialog } from "../hooks/useDialog";
 
 const BodyContent = () => {
-  const { close, dialog } = useModal("ToDo");
+  const { close } = useModal("ToDo");
+  const { dialog } = useDialog();
 
   const openDialog = async () => {
-    const confirm = await dialog(ConfirmDialog);
-    console.log("CONFIRMED", confirm);
+    const confirm = await dialog(ConfirmDialog, { title: "Another title" });
+    console.log("[modal][confirmed]", confirm);
+
+    if (confirm) close();
   };
 
   return (

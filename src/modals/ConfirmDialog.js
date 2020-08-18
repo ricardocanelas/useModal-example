@@ -1,11 +1,11 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-// import { useModal } from "../hooks/useModal";
+// import { useDialog } from "../hooks/useDialog";
 
 const ConfirmDialog = ({ resolve, dialogId, title }) => {
-  // you can use 'resolveDialog', if you want.
-  // const { resolveDialog } = useModal(dialogId);
+  // you can use 'resolveDialog', if you want, but I don't recommend
+  // const { resolve: resolveDialog } = useDialog(dialogId);
 
   const handleNo = () => {
     resolve(false);
@@ -41,7 +41,7 @@ const ConfirmDialog = ({ resolve, dialogId, title }) => {
 
 export default ConfirmDialog;
 
-// If you want use Portal...
+// If you want use Portal, you can...
 // import ReactDOM from "react-dom";
 // export default (props) =>
 //   ReactDOM.createPortal(
