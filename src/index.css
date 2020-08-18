@@ -14,3 +14,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.modal.fade {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
