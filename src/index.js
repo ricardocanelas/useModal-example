@@ -1,6 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { ModalProvider } from "./hooks/useModal";
+import { DialogProvider } from "./hooks/useDialog";
 import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import "./index.css";
+
+ReactDOM.render(
+  <DialogProvider>
+    <ModalProvider>
+      <App />
+    </ModalProvider>
+  </DialogProvider>,
+  document.getElementById("root")
+);

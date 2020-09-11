@@ -32,10 +32,10 @@ function DialogProvider(props) {
             id: dialogId,
             Comp: (
               <Component
-                {...props}
                 key={dialogId}
                 resolve={handleResolve}
                 dialogId={dialogId}
+                props={props}
               />
             ),
             resolve,
@@ -76,4 +76,5 @@ function useDialog(dialogId) {
   };
 }
 
-export { DialogProvider, useDialog };
+export { DialogProvider };
+export default useDialog;

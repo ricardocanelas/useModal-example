@@ -1,20 +1,16 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-// import { useDialog } from "../hooks/useDialog";
 
-const ConfirmDialog = ({ resolve, dialogId, title }) => {
-  // you can use 'resolveDialog', if you want, but I don't recommend
-  // const { resolve: resolveDialog } = useDialog(dialogId);
+const ConfirmDialog = ({ resolve, dialogId, props }) => {
+  const { title } = props;
 
   const handleNo = () => {
     resolve(false);
-    // resolveDialog(false)
   };
 
   const handleYes = () => {
     resolve(true);
-    // resolveDialog(true)
   };
 
   return (
@@ -24,11 +20,14 @@ const ConfirmDialog = ({ resolve, dialogId, title }) => {
       </Modal.Header>
 
       <Modal.Body>
-        <p>Modal body text goes here. [{dialogId}]</p>
+        <p>
+          Modal body text goes here. <br />
+          DialogId = {dialogId}
+        </p>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleNo}>
+        <Button variant="danger" onClick={handleNo}>
           No
         </Button>
         <Button variant="primary" onClick={handleYes}>
@@ -38,6 +37,8 @@ const ConfirmDialog = ({ resolve, dialogId, title }) => {
     </Modal>
   );
 };
+
+ConfirmDialog.displayName = "MyConfirmDialogName";
 
 export default ConfirmDialog;
 

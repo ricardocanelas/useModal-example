@@ -1,11 +1,13 @@
 import React from "react";
-import { ModalProvider, useModal } from "./hooks/useModal";
-import { DialogProvider, useDialog } from "./hooks/useDialog";
-import ToDoModal from "./modals/TodoModal";
+import useModal from "./hooks/useModal";
+import useDialog from "./hooks/useDialog";
+import Status from "./Status";
+import BasicModal from "./modals/BasicModal";
+import AdvancedModal from "./modals/AdvancedModal";
 import ConfirmDialog from "./modals/ConfirmDialog";
 
-const List = () => {
-  const { isShow, open } = useModal();
+const App = () => {
+  const { open } = useModal();
   const { dialog } = useDialog();
 
   const handleConfirm = async () => {
@@ -17,30 +19,21 @@ const List = () => {
 
   return (
     <div>
-      {isShow("ToDo") ? "showing toDo" : "not showing toDo"} <br />
-      {isShow("ConfirmDialog")
-        ? "showing ConfirmDialog"
-        : "not showing ConfirmDialog"}
-      <hr />
-      <button onClick={() => open("ToDo")} className="mr-3">
-        Open To Do Modal
+      <Status />
+
+      <button onClick={() => open("the-basic-modal")} className="mr-3">
+        Open Basic
+      </button>
+      <button onClick={() => open("the-advanced-modal")} className="mr-3">
+        Open Advanced
       </button>
       <button onClick={handleConfirm}>Open ConfirmDialog</button>
-      <ToDoModal />
+
+      {/* ADD THE MODALS HERE */}
+      <BasicModal modalId="the-basic-modal" />
+      <AdvancedModal />
     </div>
   );
 };
-
-// --- APP ---
-
-function App() {
-  return (
-    <DialogProvider>
-      <ModalProvider>
-        <List />
-      </ModalProvider>
-    </DialogProvider>
-  );
-}
 
 export default App;

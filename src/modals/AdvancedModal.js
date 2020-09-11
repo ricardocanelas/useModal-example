@@ -2,41 +2,47 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import ConfirmDialog from "../modals/ConfirmDialog";
-import { useModal } from "../hooks/useModal";
-import { useDialog } from "../hooks/useDialog";
+import useModal from "../hooks/useModal";
+import useDialog from "../hooks/useDialog";
 
 const BodyContent = () => {
-  const { close } = useModal("ToDo");
+  const { close: closeAdvancedModal } = useModal("the-advanced-modal");
+  const { open: openBasicModal } = useModal("the-basic-modal");
   const { dialog } = useDialog();
 
   const openDialog = async () => {
-    const confirm = await dialog(ConfirmDialog, { title: "Another title" });
+    const confirm = await dialog(ConfirmDialog, {
+      title: "Do you want close the advanced modal?",
+    });
     console.log("[modal][confirmed]", confirm);
 
-    if (confirm) close();
+    if (confirm) closeAdvancedModal();
   };
 
   return (
     <div>
       <p>This is the content of the modal.</p>
       <p>Woohoo, you're reading this text in a modal!</p>
-      <Button onClick={close} className="mr-3">
+      <Button className="mr-3" onClick={closeAdvancedModal}>
         Close this modal
       </Button>
-      <Button onClick={openDialog}>Open ConfirmModal</Button>
+      <Button className="mr-3" onClick={openBasicModal}>
+        Open BasicModal
+      </Button>
+      <Button onClick={openDialog}>Open ConfirmDialog</Button>
     </div>
   );
 };
 
-const ToDoModal = () => {
-  const { show, close } = useModal("ToDo");
+const AdvanceModal = () => {
+  const { show, close } = useModal("the-advanced-modal");
 
   const handleClose = () => {
     close();
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} size="lg">
       <Modal.Header closeButton>
         <Modal.Title>Modal heading</Modal.Title>
       </Modal.Header>
@@ -56,4 +62,4 @@ const ToDoModal = () => {
   );
 };
 
-export default ToDoModal;
+export default AdvanceModal;
