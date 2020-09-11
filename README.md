@@ -1,40 +1,32 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This is a simple example of how you can use multiple modals/dialogs using only a hook/contextApi.
+This is a simple example of how you can use multiple modals/dialogs using only hook/contextApi.
+
+See the examples here - https://ricardocanelas.github.io/useModal-example
 
 ## UseModal
 
-Creating the component:
+| props     | type     |
+| --------- | -------- |
+| show      | boolean  |
+| open      | function |
+| close     | function |
+| isShowing | function |
+
+### Creating the component:
 
 ```js
 const MyModal = () => {
-  const { show, close } = useModal('MyUniqueModalID')
-
+  const { show, close } = useModal("MyUniqueModalID");
   return (
-    <ModalComponent show={show} onHide={close}>
+    <YourModalComponent show={show} onHide={close}>
       Your Content
-    <ModalComponent>
-  )
-}
+    </YourModalComponent>
+  );
+};
 ```
 
-or you can use ID value, but I don't recommend
-
-```js
-const MyModal = () => {
-  const { isShow, close } = useModal()
-
-  return (
-    <ModalComponent
-      show={isShow('MyUniqueModalID')}
-      onHide={() => close('MyUniqueModalID')}>
-      Your Content
-    <ModalComponent>
-  )
-}
-```
-
-Using:
+### Using:
 
 ```js
 const HomePage = () => {
@@ -52,29 +44,46 @@ const HomePage = () => {
 
 ## UseDialog
 
-Creating the component:
+| props  | type           |
+| ------ | -------------- |
+| dialog | async function |
+
+### Creating the component:
 
 ```js
 const ConfirmDialog = ({ resolve, dialogId, title }) => {
   const handleYes = () => resolve(true);
   const handleNo = () => resolve(false);
-  // ...your modal
+  const handleHide = () => resolve(null);
+
+  return (
+    <YourModalComponent show={true} onHide={handleHide}>
+      <button onClick={handleYes}>Yes</button>
+      <button onClick={handleNo}>No</button>
+    </YourModalComponent>
+  );
 };
 ```
 
-Using:
+### Using:
 
 ```js
 import { DialogProvider, useDialog } from "./hooks/useDialog";
 import ConfirmDialog from "./modals/ConfirmDialog";
 
-const handleConfirm = async () => {
-  const confirm = await dialog(ConfirmDialog, {
-    title: "Do you want close without save?",
-  });
+const HomePage = () => {
+  const { dialog } = useDialog();
 
-  if (confirm) {
-    // do something
-  }
+  const handleConfirm = async () => {
+    const confirm = await dialog(ConfirmDialog, {
+      title: "Do you want close without save?",
+    });
+
+    if (confirm) {
+      // do something
+    }
+  };
+
+  return <button onClick={handleConfirm}>Quit</button>;
 };
 ```
