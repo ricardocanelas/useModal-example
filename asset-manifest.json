@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/useModal-example/static/css/main.5d0807bf.chunk.css",
+    "main.js": "/useModal-example/static/js/main.9bf68d2e.chunk.js",
+    "main.js.map": "/useModal-example/static/js/main.9bf68d2e.chunk.js.map",
+    "runtime-main.js": "/useModal-example/static/js/runtime-main.1ac8b194.js",
+    "runtime-main.js.map": "/useModal-example/static/js/runtime-main.1ac8b194.js.map",
+    "static/css/2.11829350.chunk.css": "/useModal-example/static/css/2.11829350.chunk.css",
+    "static/js/2.24739abe.chunk.js": "/useModal-example/static/js/2.24739abe.chunk.js",
+    "static/js/2.24739abe.chunk.js.map": "/useModal-example/static/js/2.24739abe.chunk.js.map",
+    "index.html": "/useModal-example/index.html",
+    "precache-manifest.932270a45d0c53461bc4491f225f351b.js": "/useModal-example/precache-manifest.932270a45d0c53461bc4491f225f351b.js",
+    "service-worker.js": "/useModal-example/service-worker.js",
+    "static/css/2.11829350.chunk.css.map": "/useModal-example/static/css/2.11829350.chunk.css.map",
+    "static/css/main.5d0807bf.chunk.css.map": "/useModal-example/static/css/main.5d0807bf.chunk.css.map",
+    "static/js/2.24739abe.chunk.js.LICENSE.txt": "/useModal-example/static/js/2.24739abe.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1ac8b194.js",
+    "static/css/2.11829350.chunk.css",
+    "static/js/2.24739abe.chunk.js",
+    "static/css/main.5d0807bf.chunk.css",
+    "static/js/main.9bf68d2e.chunk.js"
+  ]
+}
